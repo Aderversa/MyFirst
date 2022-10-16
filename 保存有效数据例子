@@ -1,0 +1,25 @@
+#include<stdio.h>
+int main()
+{
+    float h, m, BMI;
+    int n;
+    char arr[20];
+    scanf("%f%f", &m, &h);
+    BMI = m / (h * h);
+    if (BMI < 18.5)
+        printf("%s", "Underweight");
+    else if (BMI >= 18.5 && BMI < 24)
+        printf("%s", "Normal");
+    else
+    {
+        sprintf(arr, "%f", BMI);
+        if (arr[7] > 52)
+            n = arr[6] + 1;
+        for (int i = 0; i < 6; i++)
+        {
+            printf("%c", arr[i]);
+        }
+        printf("%c\n%s", n, "Overweight");
+    }
+    return 0;
+}
