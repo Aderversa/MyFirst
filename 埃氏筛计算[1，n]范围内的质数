@@ -1,0 +1,29 @@
+#include<stdio.h>
+int countPrimes(const int n)
+{
+    int counter=0,i;
+    if(n<2)return 0;
+    int isPrime[n];
+    memset(isPrime,0,sizeof(isPrime));
+    for(i=2;i<n;i++)
+    {
+        if(!isPrime[i])
+        {
+            counter++;
+            if((long long)i*i<n)
+            {
+                for(int j=i*i;j<n;j+=i)
+                    isPrime[j]=1;
+            }
+        }
+    }
+    return counter;
+}
+int main()
+{
+    int n,ret;
+    scanf("%d",&n);
+    ret=countPrimes(n);
+    printf("%d\n",ret);
+    return 0;
+}
