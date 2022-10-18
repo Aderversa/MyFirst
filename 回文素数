@@ -1,5 +1,5 @@
 #include<stdio.h>
-#incldue<math.h>
+#include<math.h>
 
 int Palindrome(int x)//判断回文数
 {
