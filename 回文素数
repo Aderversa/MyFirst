@@ -1,0 +1,59 @@
+#include<stdio.h>
+#incldue<math.h>
+
+int Palindrome(int x)//判断回文数
+{
+    int temp=0,y=x;
+    while(y>0)
+    {
+        temp=temp*10+y%10;
+        y/=10;
+    }
+    if(x==temp)return 1;
+    else return 0;
+}
+int isPrime(int x)
+{
+    int j;
+    if(x==1)return 0;
+    else if(x==2)return 1;
+    for(j=2;j<=sqrt(x);j++)
+    {
+        if(x%j==0)return 0;
+    }
+    return 1;
+}
+int numlen(int x)
+{
+    if(x<10)return 1;
+    return numlen(x/10)+1;
+}
+int nextPalindrome(int x)//求下一个回文数，先将左一半分割，再翻转，加一，将翻转后的数存于right,最后将左右拼接
+{
+    int left=0,right=0,tmp=0;
+    int len=0,p=0;
+    len=numlen(x);
+    p=pow(10,len/2);
+    left=x/p;
+    left++;
+    tmp=left;
+    while(tmp>0)
+    {
+        right=right*10+tmp%10;
+        tmp/=10;
+    }
+    return left*p+right%p;
+}
+int primePalindrome(int n)
+{
+    int i;
+    for(i=n;i<2e8;i++)
+    {
+        if(Palindrome(i)==1)//先判断是否是回文数
+        {
+            if(isPrime(i)==1)return i;//判断是否是质数
+            else i=nextPalindrome(i)-1;//若不是质数，则直接求下一个回文数，再判断是否为质数
+        }
+    }
+    return 0;
+}
