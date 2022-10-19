@@ -1,0 +1,19 @@
+int countStudents(int* students, int studentsSize, int* sandwiches, int sandwichesSize)
+{
+    int likeyuan=0,likefang=0;
+    int i=0;
+    for(i=0;i<studentsSize;i++)
+    {
+        likefang+=students[i];
+    }
+    likeyuan=studentsSize-likefang;
+    for(i=0;i<studentsSize;i++)
+    {
+        if(sandwiches[i]==0&&likeyuan>0)
+            likeyuan--;
+        else if(sandwiches[i]==1&&likefang>0)
+            likefang--;
+        else break;
+    }
+    return likeyuan+likefang;
+}
