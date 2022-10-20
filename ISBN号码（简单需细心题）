@@ -1,0 +1,36 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    char arr[50];
+    int i=0,len=0,mutiadd=0,k=0,count=1;
+    scanf("%s",arr);
+    len=strlen(arr);
+    for(i=0;i<len-1;i++)
+    {
+        if(arr[i]>='0'&&arr[i]<='9')
+        {
+            mutiadd+=(arr[i]-'0')*count++;
+        }
+    }
+    k=mutiadd%11;
+    if(k<10 && k==arr[i]-'0')
+    {
+        printf("Right\n");
+    }
+    else if(k==10&&arr[i]=='X')
+    {
+        printf("Right\n");
+    }
+    else if(k==10&&arr[i]!='X')
+    {
+        arr[i]='X';
+        printf("%s\n",arr);
+    }
+    else if(k<10&&arr[i]!=k)
+    {
+        arr[i]=k+'0';
+        printf("%s\n",arr);
+    }
+    return 0;
+}
