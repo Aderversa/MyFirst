@@ -1,0 +1,36 @@
+void swap(struct node*pPivot,struct node* left_pre)
+{
+    char temp;
+    temp=pPivot->ch;
+    pPivot->ch=left_pre->ch;
+    left_pre->ch=temp;
+}
+void subsort(struct node* left,struct node* right)
+{
+  if(left==NULL||left->next==NULL||left==right)return ;
+  char pivot=left->ch;
+  struct node* i=left->next;
+  struct node* i_pre=left;
+  struct node* j=left->next;
+  while(j!=NULL)
+  {
+    if(j->ch<pivot)
+    {
+      swap(i,j);
+      i_pre=i;
+      i=i->next;
+    }
+    j=j->next;
+  }
+  swap(left,i_pre);
+  subsort(left,i_pre);
+  subsort(i,right);
+}
+struct node* sorting(struct node* L)
+{  // Add your code here
+    if(L==NULL)return NULL;
+    struct node* curNode=L;
+    while(curNode->next!=NULL)curNode=curNode->next;
+    subsort(L,curNode);
+    return L;
+}
