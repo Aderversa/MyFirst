@@ -1,0 +1,17 @@
+struct node* inverse(struct node* L)
+{ // Add your code here
+    struct node *p,*r,*head;
+    head=(struct node*)malloc(sizeof(struct node));
+    head->next=L;
+    p=head->next;
+    head->next=NULL;
+    while(p!=NULL)
+    {
+      r=p->next;//必须创建一个中间变量，用来接收p->next未被变为NULL时的指针
+      p->next=head->next;
+      head->next=p;//上面两步初次用来创建表尾，后边用来将原表头后面的元素接到表头，为头插法
+      p=r;
+    }
+    L=head->next;//用L接收原链表表头
+    return L;
+}
