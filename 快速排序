@@ -1,0 +1,41 @@
+void swap(int arr[], int x, int y)
+{
+	int tmp = arr[x];
+	arr[x] = arr[y];
+	arr[y] = tmp;
+}
+int* partation(int arr[], int L, int R)//R表示最右边元素的下标
+{
+	int less = L - 1;
+	int more = R;
+	while (L < more)
+	{
+		if (arr[L] < arr[R])
+			swap(arr, ++less, L++);
+		else if (arr[L] > arr[R])
+			swap(arr, --more, L);
+		else
+			L++;
+	}
+	swap(arr, more, R);
+	int* p = calloc(2, sizeof(int));
+	assert(p != NULL);
+	p[0] = less + 1;
+	p[1] = more;
+	return p;
+}
+void quickSort(int arr[], int l, int r)
+{
+	if (l == r)
+		return;
+	swap(arr, l + rand() % (r - l + 1), r);
+	int* p=partation(arr, l, r);
+	if (p != NULL)
+	{
+		if (p[0] - 1 < 0)return;
+		if (p[1] + 1 > r)return;
+ 		quickSort(arr, l, p[0] - 1);
+		quickSort(arr, p[1] + 1, r);
+	}
+	free(p);
+}
