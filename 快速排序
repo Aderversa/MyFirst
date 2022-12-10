@@ -30,12 +30,8 @@ void quickSort(int arr[], int l, int r)
 		return;
 	swap(arr, l + rand() % (r - l + 1), r);
 	int* p=partation(arr, l, r);
-	if (p != NULL)
-	{
-		if (p[0] - 1 < 0)return;
-		if (p[1] + 1 > r)return;
- 		quickSort(arr, l, p[0] - 1);
+	if(p[0] - 1 > l)
+		quickSort(arr, l, p[0] - 1);
+	if(p[1] + 1 < r)
 		quickSort(arr, p[1] + 1, r);
-	}
-	free(p);
 }
